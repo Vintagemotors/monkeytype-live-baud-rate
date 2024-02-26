@@ -2,7 +2,7 @@
 // @name         MonkeyType Live Baud Rate
 // @namespace    vintagemotors.github.io
 // @version      1.0
-// @description  Adds live baud rate to MonkeyType.com
+// @description  Add a live baud rate display to MonkeyType.com
 // @author       Vintagemotors
 // @match        https://monkeytype.com/*
 // @grant        none
