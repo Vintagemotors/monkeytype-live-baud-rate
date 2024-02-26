@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         MonkeyType Live Baud Rate
+// @name         MonkeyType Live Baud Rate (CPM)
 // @namespace    vintagemotors.github.io
 // @version      1.0
 // @description  Add a live baud rate display to MonkeyType.com
