@@ -3,7 +3,7 @@
 // @namespace    vintagemotors.github.io
 // @version      1.0
 // @description  Adds live baud rate to MonkeyType.com
-// @author       You
+// @author       Vintagemotors
 // @match        https://monkeytype.com/*
 // @grant        none
 // ==/UserScript==
