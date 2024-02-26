@@ -1,0 +1,1 @@
+Just load the [raw](https://raw.githubusercontent.com/Vintagemotors/monkeytype-live-baud-rate/master/monketype-live-baud-rate.js) content into your userscript manager and refresh the monkeytype page and your good to go!
