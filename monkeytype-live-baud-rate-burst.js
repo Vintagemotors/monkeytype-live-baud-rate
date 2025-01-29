@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         MonkeyType Live Baud Rate (Burst) 
+// @name         MonkeyType Live Baud Rate (Burst)
 // @namespace    vintagemotors.github.io
-// @version      1.0
+// @version      1.1
 // @description  Add live baud rate to MonkeyType.com using burst attribute
 // @author       Vintagemotors
 // @match        https://monkeytype.com/*
@@ -27,27 +27,36 @@
             const burst = parseFloat(burstElement.innerText);
             const baudRate = calculateBaudRate(burst);
 
-            // Create a new div for baud rate
-            const baudRateElement = document.querySelector('.timerMain .baud-rate');
-            if (baudRateElement) {
-                baudRateElement.innerText = '\u00A0\u00A0' + baudRate + ' baud'; // Add two non-breaking spaces
-            } else {
-                // Insert the baud rate element after the burst element
-                burstElement.insertAdjacentHTML('afterend', `<div class="baud-rate">\u00A0\u00A0${baudRate} baud</div>`); // Add two non-breaking spaces
+            // Check if the baud rate number element exists
+            let baudNumberElement = document.querySelector('.timerMain .baud-rate-number');
+            if (!baudNumberElement) {
+                baudNumberElement = document.createElement('div');
+                baudNumberElement.className = 'baud-rate-number';
+                baudNumberElement.style.display = 'inline-block'; // Ensure it stays inline
+                burstElement.insertAdjacentElement('afterend', baudNumberElement);
             }
+
+            // Check if the baud text element exists
+            let baudTextElement = document.querySelector('.timerMain .baud-rate-text');
+            if (!baudTextElement) {
+                baudTextElement = document.createElement('div');
+                baudTextElement.className = 'baud-rate-text';
+                baudTextElement.style.display = 'inline-block'; // Ensure it stays inline
+                baudNumberElement.insertAdjacentElement('afterend', baudTextElement);
+            }
+
+            // Update the elements
+            baudNumberElement.innerText = '\u00A0\u00A0' + baudRate
+            baudTextElement.innerText = '\u00A0baud';
         } else {
-            // Hide the baud rate element when the burst is hidden
-            const existingBaudRateElement = document.querySelector('.timerMain .baud-rate');
-            if (existingBaudRateElement) {
-                existingBaudRateElement.remove();
-            }
+            // Remove the baud rate elements if burst is hidden
+            document.querySelector('.timerMain .baud-rate-number')?.remove();
+            document.querySelector('.timerMain .baud-rate-text')?.remove();
         }
     }
 
     // Periodically check for the visibility of the burst element
-    const checkVisibilityInterval = setInterval(function() {
-        updateLiveBaudRate();
-    }, 500);
+    const checkVisibilityInterval = setInterval(updateLiveBaudRate, 500);
 
     // Stop checking when the page is no longer visible
     document.addEventListener('visibilitychange', function() {
